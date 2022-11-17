@@ -1,39 +1,19 @@
 import serverless from "serverless-http";
 import express from "express";
 import bodyParser from "body-parser";
-import nodemailer from "nodemailer";
-import { Mail } from "../model/mail";
+import { MailService } from "../service/mail";
+import { ServiceResponse } from "../model/service-response";
 
 const app = express();
-const apiContext = process.env.API_CONTEXT;
-
 app.use(bodyParser.json());
 
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: Number(process.env.STMP_PORT),
-  secure: Boolean(process.env.SMTP_SECURE),
-  auth: {
-    user: process.env.MAIL,
-    pass: process.env.PASSWORD,
-  },
-});
+const apiContext = process.env.API_CONTEXT;
+const mailService = new MailService();
 
 app.post(apiContext, async (req, res) => {
-  const mail = req.body as Mail;
+  const response: ServiceResponse = await mailService.sendMail(req.body);
 
-  console.log(mail.recipients);
-
-  const info = await transporter.sendMail({
-    from: '"noreply" <auxb.falhas@gmail.com>',
-    to: mail.recipients.join(","),
-    subject: mail.subject,
-    html: mail.body,
-  });
-
-  return res.status(200).json({
-    message: `Mail sent successfully ${info.messageId}`,
-  });
+  return res.status(response.statusCode).json(response);
 });
 
 app.use((req, res) => {
