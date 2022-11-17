@@ -1,0 +1,21 @@
+service: mail
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: dev
+  region: sa-east-1
+
+functions:
+  api:
+    handler: src/rest/mail.handler
+    events:
+      - httpApi: '*'
+      - httpApi: 'POST /mail/${sls:stage}'
+plugins:
+  - serverless-plugin-typescript
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+useDotenv: true
