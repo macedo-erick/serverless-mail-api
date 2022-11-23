@@ -1,13 +1,13 @@
 import serverless from "serverless-http";
 import express from "express";
 import bodyParser from "body-parser";
-import { MailService } from "../service/mail";
-import { ServiceResponse } from "../model/service-response";
+import { MailService } from "../service/mail-service";
+import { ServiceResponse } from "../model/service-response.model";
 
 const app = express();
 app.use(bodyParser.json());
 
-const apiContext = process.env.API_CONTEXT;
+const apiContext = process.env.API_CONTEXT as string;
 const mailService = new MailService();
 
 app.post(apiContext, async (req, res) => {

@@ -1,6 +1,6 @@
-import nodemailer from "nodemailer";
-import { Mail } from "../model/mail";
-import { ServiceResponse } from "../model/service-response";
+import * as nodemailer from "nodemailer";
+import { Mail } from "../model/mail.model";
+import { ServiceResponse } from "../model/service-response.model";
 
 export class MailService {
   private readonly transporter = nodemailer.createTransport({
@@ -22,18 +22,14 @@ export class MailService {
         html: mail.body,
       });
 
-      return new ServiceResponse(
-        200,
-        new Date().getTime(),
-        `Mail ${info.messageId} sent successfully `
-      );
+      return new ServiceResponse(200, {
+        message: `Mail ${info.messageId} sent successfully `,
+      });
     } catch (e) {
-      return new ServiceResponse(
-        500,
-        new Date().getTime(),
-        `Mail could not be sent`,
-        "MailSentException"
-      );
+      return new ServiceResponse(500, {
+        message: `Mail could not be sent`,
+        error: "MailSentException",
+      });
     }
   }
 }

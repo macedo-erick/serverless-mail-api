@@ -1,4 +1,11 @@
+# modules files
 node_modules/
+
+# deployment files
 .serverless/
 
+# environment files
 .env*
+
+# build files
+.build/

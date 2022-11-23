@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
+    "preserveConstEnums": true,
+    "strictNullChecks": true,
+    "sourceMap": false,
+    "target": "es6",
+    "outDir": ".build",
     "module": "commonjs",
     "esModuleInterop": true,
-    "target": "es6",
     "moduleResolution": "node",
-    "sourceMap": true,
-    "outDir": "dist"
-  },
-  "lib": ["es2015"]
+    "lib": ["es2015"],
+    "rootDir": "./"
+  }
 }

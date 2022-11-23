@@ -6,10 +6,11 @@ provider:
   runtime: nodejs14.x
   stage: dev
   region: sa-east-1
+  timeout: 15
 
 functions:
   api:
-    handler: src/rest/mail.handler
+    handler: src/rest/mail-resource.handler
     events:
       - httpApi: '*'
       - httpApi: 'POST /mail/${sls:stage}'
