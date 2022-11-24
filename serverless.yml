@@ -13,11 +13,26 @@ functions:
     handler: src/rest/mail-resource.handler
     events:
       - httpApi: '*'
-      - httpApi: 'POST /mail/${sls:stage}'
+      - httpApi: 
+          method: 'POST'
+          path:  '/mail/${sls:stage}'
+          description: 'Send Mail'
+          summary: 'Send Mail'
+          bodyType: 'Mail'
+          swaggerTags: ['Mail Resources']
+          responseData:
+            200:
+              description: 'Sucessfully Send charge'
+              bodyType: 'IServiceResponse'
 
 plugins:
+  - serverless-auto-swagger
   - serverless-plugin-typescript
   - serverless-dotenv-plugin
   - serverless-offline
 
 useDotenv: true
+
+custom:
+  autoswagger:
+    typefiles: ['./src/model/mail.model.ts', './src/model/service-response.model.ts']

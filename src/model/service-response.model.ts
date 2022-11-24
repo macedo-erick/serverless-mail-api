@@ -1,4 +1,11 @@
-export class ServiceResponse {
+export interface IServiceResponse {
+  statusCode: number;
+  timestamp: number;
+  payload: object;
+}
+
+
+export class ServiceResponse implements IServiceResponse {
   statusCode: number;
   timestamp: number;
   payload: object;
