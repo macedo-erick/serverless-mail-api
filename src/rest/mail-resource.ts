@@ -7,10 +7,10 @@ import { ServiceResponse } from "../model/service-response.model";
 const app = express();
 app.use(bodyParser.json());
 
-const apiContext = process.env.API_CONTEXT as string;
+const stage = process.env.STAGE as string;
 const mailService = new MailService();
 
-app.post(apiContext, async (req, res) => {
+app.post(stage, async (req, res) => {
   const response: ServiceResponse = await mailService.sendMail(req.body);
 
   return res.status(response.statusCode).json(response);

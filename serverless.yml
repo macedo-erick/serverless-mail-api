@@ -15,7 +15,7 @@ functions:
       - httpApi: '*'
       - httpApi: 
           method: 'POST'
-          path:  '/mail/${sls:stage}'
+          path:  '/${sls:stage}'
           description: 'Send Mail'
           summary: 'Send Mail'
           bodyType: 'Mail'
@@ -35,4 +35,9 @@ useDotenv: true
 
 custom:
   autoswagger:
+    useStage: false
+    title: 'Mail'
+    description: 'Doocumentation for Mail API'
+    version: '1.0.0'
+    swaggerPath: '${sls:stage}/api-docs'
     typefiles: ['./src/model/mail.model.ts', './src/model/service-response.model.ts']
