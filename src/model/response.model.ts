@@ -1,8 +1,8 @@
-export interface IServiceResponse {
+export type IServiceResponse = {
   statusCode: number;
   timestamp: number;
   payload: object;
-}
+};
 
 const ServiceResponse = () => {
   const create = (statusCode: number, payload: any): IServiceResponse => {

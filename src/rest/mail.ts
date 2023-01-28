@@ -1,16 +1,17 @@
 import serverless from "serverless-http";
 import express from "express";
 import bodyParser from "body-parser";
-import { IServiceResponse } from "../model/service-response.model";
-import sendMail from "../service/mail.service";
+import MailService from "../service/mail.service";
+import { IServiceResponse } from "../model/response.model";
 
 const app = express();
+const stage = process.env.STAGE as string;
+const service = MailService();
+
 app.use(bodyParser.json());
 
-const stage = process.env.STAGE as string;
-
 app.post(stage, async (req, res) => {
-  const response: IServiceResponse = await sendMail(req.body);
+  const response: IServiceResponse = await service.sendMail(req.body);
 
   return res.status(response.statusCode).json(response);
 });

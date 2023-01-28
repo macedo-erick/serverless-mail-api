@@ -1,4 +1,6 @@
-export interface IMail {
+export type IMail = {
+  from: string;
+  sender: string;
   subject: string;
   body: string;
   recipients: string[];
@@ -7,12 +9,15 @@ export interface IMail {
 const Mail = () => {
   const create = (mail: IMail) => {
     return {
-      from: '"noreply" <auxb.falhas@gmail.com>',
+      from: mail.from,
+      sender: mail.sender,
       to: mail.recipients,
       subject: mail.subject,
       html: mail.body,
     };
   };
+
+
 
   return {
     create,
