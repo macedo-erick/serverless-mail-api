@@ -8,11 +8,16 @@ const s3stream = new S3StreamLogger({
   secret_access_key: process.env.API_AWS_SECRET_ACCESS_KEY,
 });
 
-const chargeLogger = createLogger({
-  levels: config.syslog.levels,
-  defaultMeta: { component: "charge-service" },
-  transports: [new transports.Stream({ stream: s3stream }), new transports.Console()],
-  format: combine(timestamp({ format: "YYYY-MM-dd HH:mm:ss" }), json()),
-});
+const mailLogger = (component: string) => {
+  return createLogger({
+    levels: config.syslog.levels,
+    defaultMeta: { component: component },
+    transports: [
+      new transports.Stream({ stream: s3stream }),
+      new transports.Console(),
+    ],
+    format: combine(timestamp({ format: "YYYY-MM-dd HH:mm:ss" }), json()),
+  });
+};
 
-export { chargeLogger };
+export default mailLogger;

@@ -10,7 +10,7 @@ provider:
 
 functions:
   api:
-    handler: src/rest/mail-resource.handler
+    handler: src/rest/mail.handler
     events:
       - httpApi: '*'
       - httpApi: 
@@ -18,11 +18,14 @@ functions:
           path:  '/${sls:stage}'
           description: 'Send Mail'
           summary: 'Send Mail'
-          bodyType: 'Mail'
+          bodyType: 'IMail'
           swaggerTags: ['Mail Resources']
           responseData:
             200:
               description: 'Sucessfully Send charge'
+              bodyType: 'IServiceResponse'
+            500:
+              description: 'Internal Server Error'
               bodyType: 'IServiceResponse'
 
 plugins:

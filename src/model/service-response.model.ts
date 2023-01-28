@@ -4,15 +4,18 @@ export interface IServiceResponse {
   payload: object;
 }
 
+const ServiceResponse = () => {
+  const create = (statusCode: number, payload: any): IServiceResponse => {
+    return {
+      payload: payload,
+      statusCode: statusCode,
+      timestamp: new Date().getTime(),
+    };
+  };
 
-export class ServiceResponse implements IServiceResponse {
-  statusCode: number;
-  timestamp: number;
-  payload: object;
+  return {
+    create,
+  };
+};
 
-  constructor(statusCode: number, payload: object) {
-    this.statusCode = statusCode;
-    this.timestamp = new Date().getTime();
-    this.payload = payload;
-  }
-}
+export default ServiceResponse;
