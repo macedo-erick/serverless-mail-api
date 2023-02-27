@@ -43,4 +43,4 @@ custom:
     description: 'Doocumentation for Mail API'
     version: '1.0.0'
     swaggerPath: '${sls:stage}/api-docs'
-    typefiles: ['./src/model/mail.model.ts', './src/model/response.model.ts']
+    typefiles: ['./src/model/mail.model.ts', './src/model/service-response.model.ts']
