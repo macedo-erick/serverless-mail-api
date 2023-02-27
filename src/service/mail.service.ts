@@ -1,9 +1,9 @@
 import { createTransport } from "nodemailer";
-import Mail, { IMail } from "../model/mail.model";
-import ServiceResponse, { IServiceResponse } from "../model/response.model";
+import mail, { IMail } from "../model/mail.model";
+import serviceResponse, { IServiceResponse } from "../model/service-response.model";
 
-const response = ServiceResponse();
-const mailFactory = Mail();
+const response = serviceResponse();
+const mail = mail();
 
 const transporter = createTransport({
   host: process.env.SMTP_HOST,
@@ -15,10 +15,10 @@ const transporter = createTransport({
   },
 });
 
-const MailService = () => {
+const mailService = () => {
   const sendMail = async (mail: IMail): Promise<IServiceResponse> => {
     try {
-      const info = await transporter.sendMail(mailFactory.create(mail));
+      const info = await transporter.sendMail(mail.create(mail));
 
       return response.create(200, {
         message: `Mail ${info.messageId} sent successfully `,
@@ -36,4 +36,4 @@ const MailService = () => {
   };
 };
 
-export default MailService;
+export default mailService;

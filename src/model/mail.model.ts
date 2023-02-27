@@ -6,7 +6,7 @@ export type IMail = {
   recipients: string[];
 }
 
-const Mail = () => {
+const mail = () => {
   const create = (mail: IMail) => {
     return {
       from: mail.from,
@@ -17,11 +17,9 @@ const Mail = () => {
     };
   };
 
-
-
   return {
     create,
   };
 };
 
-export default Mail;
+export default mail;

@@ -1,12 +1,12 @@
 import serverless from "serverless-http";
 import express from "express";
 import bodyParser from "body-parser";
-import MailService from "../service/mail.service";
-import { IServiceResponse } from "../model/response.model";
+import mailService from "../service/mail.service";
+import { IServiceResponse } from "../model/service-response.model";
 
 const app = express();
 const stage = process.env.STAGE as string;
-const service = MailService();
+const service = mailService();
 
 app.use(bodyParser.json());
 

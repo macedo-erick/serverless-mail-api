@@ -4,7 +4,7 @@ export type IServiceResponse = {
   payload: object;
 };
 
-const ServiceResponse = () => {
+const serviceResponse = () => {
   const create = (statusCode: number, payload: any): IServiceResponse => {
     return {
       payload: payload,
@@ -18,4 +18,4 @@ const ServiceResponse = () => {
   };
 };
 
-export default ServiceResponse;
+export default serviceResponse;
