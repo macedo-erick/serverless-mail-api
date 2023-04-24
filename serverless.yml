@@ -42,5 +42,5 @@ custom:
     title: 'Mail'
     description: 'Doocumentation for Mail API'
     version: '1.0.0'
-    swaggerPath: '${sls:stage}/api-docs'
+    swaggerPath: '/api/v1/docs'
     typefiles: ['./src/model/mail.model.ts', './src/model/service-response.model.ts']
