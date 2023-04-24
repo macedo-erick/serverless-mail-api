@@ -15,7 +15,7 @@ functions:
       - httpApi: '*'
       - httpApi: 
           method: 'POST'
-          path:  '/${sls:stage}'
+          path:  '/api/v1/mails'
           description: 'Send Mail'
           summary: 'Send Mail'
           bodyType: 'IMail'
