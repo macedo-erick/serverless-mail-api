@@ -15,7 +15,7 @@ functions:
       - httpApi: '*'
       - httpApi: 
           method: 'POST'
-          path:  '/api/v1/mails'
+          path:  'api/v1/mails'
           description: 'Send Mail'
           summary: 'Send Mail'
           bodyType: 'IMail'
@@ -42,5 +42,5 @@ custom:
     title: 'Mail'
     description: 'Doocumentation for Mail API'
     version: '1.0.0'
-    swaggerPath: '/api/v1/docs'
+    swaggerPath: 'api/v1/docs'
     typefiles: ['./src/model/mail.model.ts', './src/model/service-response.model.ts']
