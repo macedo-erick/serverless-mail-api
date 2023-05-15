@@ -1,16 +1,14 @@
-export type IMail = {
+export type Mail = {
   from: string;
-  sender: string;
   subject: string;
   body: string;
   recipients: string[];
 }
 
 const mail = () => {
-  const create = (mail: IMail) => {
+  const create = (mail: Mail) => {
     return {
       from: mail.from,
-      sender: mail.sender,
       to: mail.recipients,
       subject: mail.subject,
       html: mail.body,
