@@ -1,11 +1,11 @@
-export type IServiceResponse = {
+export type ServiceResponse = {
   statusCode: number;
   timestamp: number;
   payload: object;
 };
 
 const serviceResponse = () => {
-  const create = (statusCode: number, payload: any): IServiceResponse => {
+  const create = (statusCode: number, payload: any): ServiceResponse => {
     return {
       payload: payload,
       statusCode: statusCode,

@@ -1,6 +1,6 @@
 import { createTransport } from "nodemailer";
 import mailFactory, { Mail } from "../model/mail.model";
-import serviceResponse, { IServiceResponse } from "../model/service-response.model";
+import serviceResponse, { ServiceResponse } from "../model/service-response.model";
 
 const response = serviceResponse();
 const mail = mailFactory();
@@ -16,7 +16,7 @@ const transporter = createTransport({
 });
 
 const mailService = () => {
-  const sendMail = async (request: Mail): Promise<IServiceResponse> => {
+  const sendMail = async (request: Mail): Promise<ServiceResponse> => {
     try {
       const info = await transporter.sendMail(mail.create(request));
 
